@@ -11,19 +11,21 @@ Vue.use(VueRouter)
     component: Home
   },
   {
-    path: '/giftcard',
-    name: 'Giftcard',
+    path: '/giftcards',
+    name: 'Giftcards',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "Giftcard" */ '../views/Giftcard.vue')
+    component: () => import(/* webpackChunkName: "Giftcard" */ '../views/Giftcards.vue')
+  },
+  {
+    path: '/giftcard',
+    name: 'Giftcard',
+    component: () => import(/* webpackChunkName: "Login" */ '../views/Giftcard.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
   }
 ]

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Front page some sort of information....</h1>
+    <h1>Dette er forsiden med noget information om gavekortet....</h1>
     <b-container class="bv-example-row">
       <b-row>
         <b-col>1 of 3</b-col>

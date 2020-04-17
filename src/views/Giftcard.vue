@@ -1,13 +1,19 @@
 <template>
-  <div class="giftcard">
-    <h1>This is an giftcard page</h1>
+  <div class="login">
+    <h1>Dette er gavekort specifikke side</h1>
+     <h1>{{ product.product_id }}</h1>
   </div>
 </template>
 
 
 <script>
 export default {
-  
+  props: {
+    product: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 
