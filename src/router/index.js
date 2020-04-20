@@ -22,7 +22,7 @@ Vue.use(VueRouter)
     path: '/giftcard/:id',
     name: 'Giftcard',
     props: true,
-    component: () => import(/* webpackChunkName: "Login" */ '../views/Giftcard.vue')
+    component: () => import(/* webpackChunkName: "Giftcard" */ '../views/Giftcard.vue')
   },
   {
     path: '/login',

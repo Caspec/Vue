@@ -13,7 +13,7 @@
         <div v-for="(product, index) in giftcards" :key="index">
           <b-col class="mt-2">
             <div>
-              <b-card no-body class="overflow-hidden max pt-2 pl-2">
+              <b-card no-body class="overflow-hidden max pt-2 pl-2 mb-2">
                 <b-row no-gutters>
                   <b-col md="6">
                     <b-card-img fluid
