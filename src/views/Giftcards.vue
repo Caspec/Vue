@@ -1,16 +1,16 @@
 <template>
-  <div class="giftcard">
+  <div class="giftcards">
     <h1 class="mt-2 mb-2">Gavekort til Hotel XYZ ferieparadis</h1>
     <b-container class="bv-example-row">
       <b-row>
-        <div v-for="(product, index) in giftcard" :key="index">
+        <div v-for="(product, index) in giftcards" :key="index">
           <b-col class="mt-2">
             <div>
               <b-card no-body class="overflow-hidden max pt-2 pl-2">
                 <b-row no-gutters>
                   <b-col md="6">
                     <b-card-img fluid
-                    :src="require('../assets/whatever.png')"
+                    :src="require('../assets/whatever2.png')"
                       alt="Image"
                       class="rounded-0"
                     ></b-card-img>
@@ -36,10 +36,12 @@
 
 
 <script>
+import { Store } from "../store/store.js";
+
 export default {
   data() {
     return {
-      giftcard: []
+       giftcards: Store.$data.products
     };
   },
   methods: {
@@ -50,7 +52,7 @@ export default {
         })
         .then(data => {
           console.log(data);
-          this.giftcard = data;
+          this.giftcards = data;
         });
     }
   },
@@ -61,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-.max{
+.max {
   max-width: 500px;
 }
 </style>
