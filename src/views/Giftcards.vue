@@ -1,8 +1,15 @@
 <template>
   <div class="giftcards">
-    <h1 class="mt-2 mb-2">Gavekort til Hotel XYZ ferieparadis</h1>
+    <h1 class="mt-2 mb-2">Gavekortet som bliver ved med at give...</h1>
     <b-container class="bv-example-row">
       <b-row>
+        <b-col>
+          <div>
+            <img class="img-fluid" :src="require('../assets/hero.png')" alt="Image" />
+          </div>
+        </b-col>
+      </b-row>
+      <b-row class="mt-4">
         <div v-for="(product, index) in giftcards" :key="index">
           <b-col class="mt-2">
             <div>
