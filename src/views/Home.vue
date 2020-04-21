@@ -12,11 +12,16 @@
       </b-row>
     </b-container>
 
-    <b-container fluid="md">
+    <b-container fluid="md" class="mb-4">
       <b-row>
-        <b-col>1 of 3</b-col>
-        <b-col>2 of 3</b-col>
-        <b-col>3 of 3</b-col>
+        <b-col>
+          <h4>"Verdens Ende" - Et meget smukt sted.</h4>
+        </b-col>
+      </b-row>
+      <b-row>
+        <b-col>
+         Ved Hotel XYZ er der meget smukt og fortjener absolut mere tid i en travl hverdag når muligheden tilbyder sig. Helsingør er en hyggelig by, hvor der ligger nogle fine museer uden for byen. Helsingør har med sit lille tog nogle fantastiske attraktioner og spisesteder. Det virker som om, at man kører til verdens ende hvor tid og sted glemmes.
+        </b-col>
       </b-row>
     </b-container>
   </div>

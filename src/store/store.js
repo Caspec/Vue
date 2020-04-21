@@ -5,11 +5,12 @@ export const Store = new Vue({
     data() {
         return {
             products,
-            cart: []
+            cart: [],
+            buyerinformations: []
         };
     },
     methods: {
-        addToCart(product) {
+        addGiftcard(product) {
             const locationInCart = this.cart.findIndex(p => { return p.details.product_id === product.product_id })
             if (locationInCart === -1) {
                 this.cart.push({
@@ -20,7 +21,7 @@ export const Store = new Vue({
                 this.cart[locationInCart].quantity++
             }
         },
-        removeFromCart(product_id) {
+        removeGiftcard(product_id) {
             const locationInCart = this.cart.findIndex(p => {
                 return p.details.product_id === product_id
             })
@@ -29,6 +30,9 @@ export const Store = new Vue({
             } else {
                 this.cart[locationInCart].quantity--
             }
+        },
+        addBuyerInformation(firstname, lastname){
+            this.buyerinformations.push(firstname, lastname)
         }
     }
 });

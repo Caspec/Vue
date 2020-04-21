@@ -25,6 +25,18 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "Giftcard" */ '../views/Giftcard.vue')
   },
   {
+    path: '/buyerinformation/',
+    name: 'BuyerInformation',
+    props: true,
+    component: () => import(/* webpackChunkName: "BuyerInformation" */ '../views/BuyerInformation.vue')
+  },
+  {
+    path: '/fakepaid/',
+    name: 'Fakepaid',
+    props: true,
+    component: () => import(/* webpackChunkName: "Fakepaid" */ '../views/Fakepaid.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')

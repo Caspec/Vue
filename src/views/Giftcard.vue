@@ -34,7 +34,7 @@
                         <b-tr>
                           <b-td class="font-weight-bold">Vælg et beløb</b-td>
                           <b-td>
-                            <select v-model="selected">
+                            <select v-model="buyerinformation.price">
                               <option
                                 v-for="option in options"
                                 v-bind:value="option.value"
@@ -50,75 +50,76 @@
                               id="textarea"
                               placeholder="Skriv en medfølgende besked til gavekortet..."
                               rows="4"
+                              v-model="buyerinformation.msg"
                             ></b-form-textarea>
                           </b-td>
                         </b-tr>
                         <b-tr>
-                          <b-td><h4>Oplysninger</h4></b-td>
+                          <b-td><h4>Købers Oplysninger</h4></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="firstname">Fornavn</label></b-td>
-                          <b-td><b-form-input id="firstname" name="firstname" type="text" placeholder="Fornavn"></b-form-input></b-td>
+                          <b-td><b-form-input id="firstname" name="firstname" type="text" placeholder="Fornavn" v-model="buyerinformation.firstname"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="lastname">Efternavn</label></b-td>
-                          <b-td><b-form-input id="lastname" name="lastname" type="text" placeholder="Efternavn"></b-form-input></b-td>
+                          <b-td><b-form-input id="lastname" name="lastname" type="text" placeholder="Efternavn" v-model="buyerinformation.lastname"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="address">Adresse</label></b-td>
-                          <b-td><b-form-input id="address" name="address" type="text" placeholder="Adresse"></b-form-input></b-td>
+                          <b-td><b-form-input id="address" name="address" type="text" placeholder="Adresse" v-model="buyerinformation.address"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="zipcode">Post nr.</label></b-td>
-                          <b-td><b-form-input id="zipcode" name="zipcode" type="number" placeholder="Post nr."></b-form-input></b-td>
+                          <b-td><b-form-input id="zipcode" name="zipcode" type="number" placeholder="Post nr." v-model="buyerinformation.zipcode"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="email">Email</label></b-td>
-                          <b-td><b-form-input id="email" name="email" type="email" placeholder="Email"></b-form-input></b-td>
+                          <b-td><b-form-input id="email" name="email" type="email" placeholder="Email" v-model="buyerinformation.email"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td><label for="reemail">Gentag Email</label></b-td>
-                          <b-td><b-form-input id="remail" name="remail" type="email" placeholder="Gentag Email"></b-form-input></b-td>
+                          <b-td><b-form-input id="remail" name="remail" type="email" placeholder="Gentag Email" v-model="buyerinformation.reemail"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td class="font-weight-bold"><label for="otherreciver">Anden modtager af gavekortet</label></b-td>
-                          <b-td><b-form-checkbox id="otherreciver" name="otherreciver" type="checkbox" v-model="otherreciver" size="lg"></b-form-checkbox></b-td>
+                          <b-td><b-form-checkbox id="otherreciver" name="otherreciver" type="checkbox" v-model="otherreciver" true-value="yes" false-value="no" size="lg"></b-form-checkbox></b-td>
                         </b-tr>
                       </b-tbody>
                       <b-tbody v-if="otherreciver === true">
                       <b-tr>
-                          <b-td><h4>Anden modtager</h4></b-td>
+                          <b-td><h4>Anden Modtager</h4></b-td>
                           <b-td></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otherfirstname">Fornavn</label></b-td>
-                          <b-td><b-form-input id="otherfirstname" name="otherfirstname" type="text" placeholder="Fornavn"></b-form-input></b-td>
+                          <b-td><b-form-input id="otherfirstname" name="otherfirstname" type="text" placeholder="Fornavn" v-model="buyerinformation.otherfirstname"></b-form-input></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otherlastname">Efternavn</label></b-td>
-                          <b-td><b-form-input id="otherlastname" name="otherlastname" type="text" placeholder="Efternavn"></b-form-input></b-td>
+                          <b-td><b-form-input id="otherlastname" name="otherlastname" type="text" placeholder="Efternavn" v-model="buyerinformation.otherlastname"></b-form-input></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otheraddress">Adresse</label></b-td>
-                          <b-td><b-form-input id="otheraddress" name="otheraddress" type="text" placeholder="Adresse"></b-form-input></b-td>
+                          <b-td><b-form-input id="otheraddress" name="otheraddress" type="text" placeholder="Adresse" v-model="buyerinformation.otheraddress"></b-form-input></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otherzipcode">Post nr.</label></b-td>
-                          <b-td><b-form-input id="otherzipcode" name="otherzipcode" type="number" placeholder="Post nr."></b-form-input></b-td>
+                          <b-td><b-form-input id="otherzipcode" name="otherzipcode" type="number" placeholder="Post nr." v-model="buyerinformation.otherzipcode"></b-form-input></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otheremail">Email</label></b-td>
-                          <b-td><b-form-input id="otheremail" name="otheremail" type="email" placeholder="Email"></b-form-input></b-td>
+                          <b-td><b-form-input id="otheremail" name="otheremail" type="email" placeholder="Email" v-model="buyerinformation.otheremail"></b-form-input></b-td>
                       </b-tr>
                       <b-tr>
                           <b-td><label for="otherreemail">Gentag Email</label></b-td>
-                          <b-td><b-form-input id="otherreemail" name="otherreemail" type="email" placeholder="Gentag Email"></b-form-input></b-td>
+                          <b-td><b-form-input id="otherreemail" name="otherreemail" type="email" placeholder="Gentag Email" v-model="buyerinformation.otherremail"></b-form-input></b-td>
                       </b-tr>                     
                       </b-tbody>
                       <b-tbody>
                         <b-tr>
                           <b-td></b-td>
-                          <b-td><b-button variant="success">Videre</b-button></b-td>
+                          <b-td><b-button :to="{ name: 'BuyerInformation', params: { buyerinformation: buyerinformation } }" variant="success">Videre</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
@@ -147,14 +148,14 @@ export default {
   data() {
     return {
       otherreciver: false, 
-      selected: "100",
       options: [
         { text: "100 kr", value: "100" },
         { text: "200 kr", value: "200" },
         { text: "300 kr", value: "300" },
         { text: "400 kr", value: "400" },
         { text: "500 kr", value: "500" }
-      ]
+      ],
+      buyerinformation: { price: 100, msg: '', firstname: '', lastname: '', address: '', zipcode: 0, email: '', otherfirstname: '', otherlastname: '', otheraddress: '', otherzipcode: 0, otheremail: '', product: this.product.product_name }
     };
   },
   methods: {
