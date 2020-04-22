@@ -29,7 +29,7 @@
               <b-row>
                 <b-col>
                   <div class="text-left">
-                    <h3>Dine oplysninger</h3>
+                    <h3>Købers oplysninger</h3>
                     <b-table-simple responsive class="table-borderless">
                       <b-tbody>
                         <b-tr>

@@ -51,7 +51,9 @@
                               placeholder="Skriv en medfølgende besked til gavekortet..."
                               rows="4"
                               v-model="buyerinformation.msg"
+                              maxlength="400"
                             ></b-form-textarea>
+                            <p class="font-weight-bold">Max. 400 tegn.</p>
                           </b-td>
                         </b-tr>
                         <b-tr>
@@ -79,7 +81,7 @@
                         </b-tr>
                         <b-tr>
                           <b-td><label for="reemail">Gentag Email</label></b-td>
-                          <b-td><b-form-input id="remail" name="remail" type="email" placeholder="Gentag Email" v-model="buyerinformation.reemail"></b-form-input></b-td>
+                          <b-td><b-form-input id="remail" name="remail" type="email" placeholder="Gentag Email" v-model="buyerinformation.remail"></b-form-input></b-td>
                         </b-tr>
                         <b-tr>
                           <b-td class="font-weight-bold"><label for="otherreciver">Anden modtager af gavekortet</label></b-td>
@@ -119,10 +121,18 @@
                       <b-tbody>
                         <b-tr>
                           <b-td></b-td>
-                          <b-td><b-button :to="{ name: 'BuyerInformation', params: { buyerinformation: buyerinformation } }" variant="success">Videre</b-button></b-td>
+                          <b-td><b-button @click="validate($event)" variant="success">Videre</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
+                    <div>
+                      <p  v-if="errors.length">
+                        <b>Udfyld følgende fejl:</b>
+                          <ul>
+                            <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
+                          </ul>
+                      </p>
+                    </div>
                   </div>
                 </b-col>
               </b-row>
@@ -147,6 +157,7 @@ export default {
   },
   data() {
     return {
+      errors: [],
       otherreciver: false, 
       options: [
         { text: "100 kr", value: "100" },
@@ -155,12 +166,65 @@ export default {
         { text: "400 kr", value: "400" },
         { text: "500 kr", value: "500" }
       ],
-      buyerinformation: { price: 100, msg: '', firstname: '', lastname: '', address: '', zipcode: 0, email: '', otherfirstname: '', otherlastname: '', otheraddress: '', otherzipcode: 0, otheremail: '', product: this.product.product_name }
+      buyerinformation: { price: 100, msg: '', firstname: '', lastname: '', address: '', zipcode: 0, email: '', remail: '', otherfirstname: '', otherlastname: '', otheraddress: '', otherzipcode: 0, othermail: '', otherremail: '',  product: this.product.product_name }
     };
   },
   methods: {
     addGiftcard(product) {
       Store.addGiftcard(product);
+    },
+    validate: function (e) {
+
+      if(this.otherreciver)
+      {
+        if(this.buyerinformation.firstname !== '' && this.buyerinformation.lastname !== '' && this.buyerinformation.address !== '' && (this.buyerinformation.email == this.buyerinformation.remail) && this.buyerinformation.otherfirstname !== '' && this.buyerinformation.otherlastname !== '' && this.buyerinformation.otheraddress !== '' && (this.buyerinformation.otheremail == this.buyerinformation.otherremail) ){
+          this.$router.push({ name: 'BuyerInformation', params: { buyerinformation: this.buyerinformation }  });
+          return true;
+        }
+      }
+
+      if(!this.otherreciver){
+        if(this.buyerinformation.firstname !== '' && this.buyerinformation.lastname !== '' && this.buyerinformation.address !== '' && (this.buyerinformation.email == this.buyerinformation.remail)){
+          this.$router.push({ name: 'BuyerInformation', params: { buyerinformation: this.buyerinformation }  });
+          return true;
+        }
+      }
+
+      this.errors = [];
+      
+      // buyer
+      if (!this.buyerinformation.firstname) {
+        this.errors.push('Fornavn hos køber mangler.');
+      }
+      if (!this.buyerinformation.lastname) {
+        this.errors.push('Efternavn hos køber mangler.');
+      }
+
+      if (!this.buyerinformation.address) {
+        this.errors.push('Adresse hos køber mangler.');
+      }
+
+      if (this.buyerinformation.email !== this.buyerinformation.reemail) {
+        this.errors.push('Email hos køber mangler eller Email hos køber matcher ikke. Gentag samme email.');
+      }
+      
+      // other reciver
+      if(this.otherreciver) {
+      if (!this.buyerinformation.otherfirstname) {
+        this.errors.push('Fornavn hos anden modtager mangler.');
+      }
+      if (!this.buyerinformation.otherlastname) {
+        this.errors.push('Efternavn hos anden modtager mangler.');
+      }
+      if (!this.buyerinformation.otheraddress) {
+        this.errors.push('Adresse hos anden modtager mangler.');
+      }
+      if (this.buyerinformation.otheremail !== this.buyerinformation.otherremail) {
+        this.errors.push('Email hos anden modtager mangler eller Email hos anden modtager matcher ikke. Gentag samme email.');
+      }
+    }
+
+      e.preventDefault();
     }
   }
 };
