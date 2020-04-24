@@ -83,7 +83,7 @@
                       <b-tbody>
                         <b-tr>
                             <b-td></b-td>
-                            <b-td><b-button :to="{ name: 'Giftcard', params: { id: this.buyerinformation.product.product_id, product: this.buyerinformation.product } }" variant="primary">Tilbage</b-button> <b-button :to="{ name: 'Fakepaid', params: { buyerinformation: buyerinformation } }" variant="success">Køb</b-button></b-td>
+                            <b-td><b-button :to="{ name: 'Giftcard', params: { id: this.buyerinformation.product.product_id, product: this.buyerinformation.product } }" variant="primary" class="m-1">Tilbage</b-button> <b-button :to="{ name: 'Fakepaid', params: { buyerinformation: buyerinformation } }" variant="success" class="m-1">Køb</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>

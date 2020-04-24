@@ -125,7 +125,7 @@
                       <b-tbody>
                         <b-tr>
                           <b-td></b-td>
-                          <b-td><b-button :to="{ name: 'Giftcards' }" variant="primary">Tilbage</b-button> <b-button @click="validate($event)" variant="success">Videre</b-button></b-td>
+                          <b-td><b-button :to="{ name: 'Giftcards' }" variant="primary" class="m-1">Tilbage</b-button> <b-button @click="validate($event)" variant="success" class="m-1">Videre</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
