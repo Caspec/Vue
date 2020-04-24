@@ -57,6 +57,10 @@
                           </b-td>
                         </b-tr>
                         <b-tr>
+                          <b-td class="font-weight-bold">Vælg måden at få gavekortet</b-td>
+                          <b-td><b-form-radio v-model="buyerinformation.selectedSendMode" name="some-radios" value="Email" checked>Email</b-form-radio><b-form-radio v-model="buyerinformation.selectedSendMode" name="some-radios" value="GLS">GLS</b-form-radio><b-form-radio v-model="buyerinformation.selectedSendMode" name="some-radios" value="Post Nord" checked>Post Nord</b-form-radio><b-form-radio v-model="buyerinformation.selectedSendMode" name="some-radios" value="Hotel">Afhentes på hotellet</b-form-radio></b-td>
+                        </b-tr>
+                        <b-tr>
                           <b-td><h4>Købers Oplysninger</h4></b-td>
                         </b-tr>
                         <b-tr>
@@ -121,7 +125,7 @@
                       <b-tbody>
                         <b-tr>
                           <b-td></b-td>
-                          <b-td><b-button @click="validate($event)" variant="success">Videre</b-button></b-td>
+                          <b-td><b-button :to="{ name: 'Giftcards' }" variant="primary">Tilbage</b-button> <b-button @click="validate($event)" variant="success">Videre</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
@@ -158,7 +162,7 @@ export default {
   data() {
     return {
       errors: [],
-      otherreciver: false, 
+      otherreciver: false,
       options: [
         { text: "100 kr", value: "100" },
         { text: "200 kr", value: "200" },
@@ -166,7 +170,7 @@ export default {
         { text: "400 kr", value: "400" },
         { text: "500 kr", value: "500" }
       ],
-      buyerinformation: { price: 100, msg: '', firstname: '', lastname: '', address: '', zipcode: 0, email: '', remail: '', otherfirstname: '', otherlastname: '', otheraddress: '', otherzipcode: 0, othermail: '', otherremail: '',  product: this.product.product_name }
+      buyerinformation: { price: 100, msg: '', firstname: '', lastname: '', address: '', zipcode: 0, email: '', remail: '', otherfirstname: '', otherlastname: '', otheraddress: '', otherzipcode: 0, othermail: '', otherremail: '',  product: this.product, selectedSendMode: 'Email' }
     };
   },
   methods: {

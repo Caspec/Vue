@@ -15,10 +15,11 @@
                   ></b-card-img>
                 </b-col>
                 <b-col md="6">
-                  <b-card-body>
-                    <h1 class="text-left">{{buyerinformation.product}}</h1>
-                    <h3 class="text-left">Din valgte pris: {{buyerinformation.price}}.- DKK</h3>
-                    <b-card-text class="mt-4 p-2 text-left border rounded">{{buyerinformation.msg}}</b-card-text>
+                  <b-card-body class="text-left">
+                    <h1>{{buyerinformation.product.product_name}}</h1>
+                    <h3>Din valgte pris: {{buyerinformation.price}}.- DKK</h3>
+                    <b-card-text class="mt-4 p-2 border rounded">{{buyerinformation.msg}}</b-card-text>
+                    <div><p class="h4 mb-2"><b-icon icon="gift-fill" variant="primary"></b-icon> {{buyerinformation.selectedSendMode}}</p></div>
                   </b-card-body>
                 </b-col>
               </b-row>
@@ -82,7 +83,7 @@
                       <b-tbody>
                         <b-tr>
                             <b-td></b-td>
-                            <b-td><b-button :to="{ name: 'Fakepaid', params: { buyerinformation: buyerinformation } }" variant="success">Køb</b-button></b-td>
+                            <b-td><b-button :to="{ name: 'Giftcard', params: { id: this.buyerinformation.product.product_id, product: this.buyerinformation.product } }" variant="primary">Tilbage</b-button> <b-button :to="{ name: 'Fakepaid', params: { buyerinformation: buyerinformation } }" variant="success">Køb</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
