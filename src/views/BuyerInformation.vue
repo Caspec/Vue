@@ -83,7 +83,7 @@
                       <b-tbody>
                         <b-tr>
                             <b-td></b-td>
-                            <b-td><b-button :to="{ name: 'Giftcard', params: { id: this.buyerinformation.product.product_id, product: this.buyerinformation.product } }" variant="primary" class="m-1">Tilbage</b-button> <b-button :to="{ name: 'Fakepaid', params: { buyerinformation: buyerinformation } }" variant="success" class="m-1">Køb</b-button></b-td>
+                            <b-td><b-button :to="{ name: 'Giftcard', params: { id: this.buyerinformation.product.product_id, product: this.buyerinformation.product } }" variant="primary" class="m-1">Tilbage</b-button> <b-button @click="createOrder($event)" variant="success" class="m-1">Køb</b-button></b-td>
                         </b-tr>
                       </b-tbody>
                     </b-table-simple>
@@ -108,10 +108,51 @@ export default {
   },
   data() {
       return {
-
+        orders_other: ''
       };
-    }
-};
+    },
+    methods: {
+      createOrder() {
+        if(this.buyerinformation.otherfirstname !== '' || this.buyerinformation.otherlastname !== ''){
+            this.orders_other = "YES"
+          }
+          else 
+          {
+           this.orders_other = "NO"
+          }
+      this.$http
+        .post("https://followcasper.dk/api/ordersadd", {
+          orders_msg: this.buyerinformation.msg,
+          orders_firstname: this.buyerinformation.firstname,
+          orders_lastname: this.buyerinformation.lastname,
+          orders_address: this.buyerinformation.address,
+          orders_zipcode: this.buyerinformation.zipcode,
+          orders_email: this.buyerinformation.email,
+          orders_other: this.orders_other,
+          orders_other_firstname: this.buyerinformation.otherfirstname,
+          orders_other_lastname: this.buyerinformation.otherlastname,
+          orders_other_address: this.buyerinformation.otheraddress,
+          orders_other_zipcode: this.buyerinformation.otherzipcode,
+          orders_other_email: this.buyerinformation.otheremail,
+          orders_price: this.buyerinformation.price,
+          orders_buydate: "2020-04-26",
+          orders_enddate: "2023-04-26",
+          orders_status: "success",
+          orders_code: 1234,
+          orders_folio: 4321
+        })
+        .then(res => {
+          if (res.status == "200") {
+            this.$router.push({
+              name: "Fakepaid",
+              params: { buyerinformation: this.buyerinformation }
+            });
+          }
+        })
+    },
+}
+}
+
 </script>
 
 <style scoped>
