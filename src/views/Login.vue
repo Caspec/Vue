@@ -24,9 +24,11 @@
                           <b-td><b-button @click="login($event)" variant="success" class="m-1">Login</b-button></b-td><b-td></b-td>
                         </b-tr>
                       </b-tbody>
-                      <b-tbody>
+                 </b-table-simple>
+                 <b-table-simple responsive class="table-borderless">
+                    <b-tbody>
                         <b-tr>
-                          <b-td><p v-if="err" class="red">Email eller Password er ikke korrekt, prøv igen !</p></b-td>
+                          <b-td><p v-if="err" class="font-weight-bold text-danger">Email eller Password er ikke korrekt, prøv igen !</p></b-td>
                         </b-tr>
                       </b-tbody>
                  </b-table-simple>
@@ -59,7 +61,9 @@ export default {
             if(res.status == "200"){
                 this.$router.push({name: 'Dashboard', params: {id: this.user_name, user_name: this.user_name}})
             }
+           
         })
+        .catch (() => {this.err = true})
     },
     showHidePassword(){
         this.passwordFieldType = this.passwordFieldType === 'password' ? 'text' : 'password'
