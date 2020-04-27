@@ -40,7 +40,13 @@ Vue.use(VueRouter)
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "Login" */ '../views/Login.vue')
-  }
+  },
+  {
+    path: '/dashboard/',
+    name: 'Dashboard',
+    props: true,
+    component: () => import(/* webpackChunkName: "Dashboard" */ '../views/Dashboard.vue')
+  },
 ]
 
 const router = new VueRouter({
