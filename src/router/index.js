@@ -47,6 +47,24 @@ Vue.use(VueRouter)
     props: true,
     component: () => import(/* webpackChunkName: "Dashboard" */ '../views/Dashboard.vue')
   },
+  {
+    path: '/productadd/',
+    name: 'ProductAdd',
+    props: true,
+    component: () => import(/* webpackChunkName: "ProductAdd" */ '../views/ProductAdd.vue')
+  },
+  {
+    path: '/productedit/',
+    name: 'ProductEdit',
+    props: true,
+    component: () => import(/* webpackChunkName: "ProductEdit" */ '../views/ProductEdit.vue')
+  },
+  {
+    path: '/productdelete/',
+    name: 'ProductDelete',
+    props: true,
+    component: () => import(/* webpackChunkName: "ProductDelete" */ '../views/ProductDelete.vue')
+  },
 ]
 
 const router = new VueRouter({
